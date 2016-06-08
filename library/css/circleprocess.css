@@ -1,0 +1,143 @@
+body{
+    margin:0;
+}
+.littleCircle{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: red;
+    margin: -13px auto auto auto;/*高度+边框宽度*/
+}
+
+#circleContainer{
+    width: 300px;
+    height: 300px;
+    position: relative;
+   /* transform: rotate(180deg);*/
+}
+
+.absoluteCenter{
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.wrapper {
+    z-index: 2;
+    width: 300px; /* Set the size of the progress bar */
+    height: 300px;
+    position: absolute; /* Enable clipping */
+    clip: rect(0px, 300px, 300px, 150px); /* Hide half of the progress bar */
+}
+/* Set the sizes of the elements that make up the progress bar */
+.circle {
+    width: 240px;
+    height: 240px;
+    border: 6px solid red;
+    border-radius: 100%;
+    position: absolute;
+    clip: rect(0px, 126px, 300px, 0px);/*高度+边框宽度*/
+}
+
+.circle[data-anim~=center]{
+    z-index: 1;
+    clip: rect(auto,auto,auto,auto);
+    border-color:  grey;
+}
+
+.circle[data-anim~=identification]{
+    z-index: 3;
+    border: none;
+    clip:auto;
+    -webkit-animation-duration: 6s; /* Full animation time */
+    -webkit-animation-name: left-spin;
+    animation-duration: 6s;
+    animation-name: left-spin;
+}
+
+/* Using the data attributes for the animation selectors. */
+/* Base settings for all animated elements */
+div[data-anim~=base] {
+    -webkit-animation-iteration-count: 1;  /* Only run once */
+    animation-iteration-count: 1;  /* Only run once */
+    -webkit-animation-fill-mode: forwards; /* Hold the last keyframe */
+    animation-fill-mode: forwards; /* Hold the last keyframe */
+    -webkit-animation-timing-function:linear; /* Linear animation */
+    animation-timing-function:linear; /* Linear animation */
+}
+
+/*
+.wrapper[data-anim~=wrapper] {
+    -webkit-animation-duration: 0.01s; !* Complete keyframes asap *!
+    -webkit-animation-delay: 2s; !* Wait half of the animation *!
+    -webkit-animation-name: close-wrapper; !* Keyframes name *!
+    animation-duration: 0.01s; !* Complete keyframes asap *!
+    animation-delay: 2s; !* Wait half of the animation *!
+    animation-name: close-wrapper; !* Keyframes name *!
+}
+*/
+
+.circle[data-anim~=left] {
+    -webkit-animation-duration: 6s; /* Full animation time */
+    animation-duration: 6s; /* Full animation time */
+    -webkit-animation-name: left-spin;
+    animation-name: left-spin;
+}
+
+.circle[data-anim~=right] {
+    -webkit-animation-duration: 3s; /* Half animation time */
+    animation-duration: 3s; /* Half animation time */
+    -webkit-animation-name: right-spin;
+    animation-name: right-spin;
+}
+
+@-webkit-keyframes left-spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+/* Rotate the right side of the progress bar from 0 to 180 degrees */
+@-webkit-keyframes right-spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(180deg);
+    }
+}
+/*@-webkit-keyframes close-wrapper {
+    to {
+        clip: rect(auto, auto, auto, auto);
+    }
+}*/
+/* Rotate the right side of the progress bar from 0 to 180 degrees */
+@keyframes right-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+/* Rotate the left side of the progress bar from 0 to 360 degrees */
+@keyframes left-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* Set the wrapper clip to auto, effectively removing the clip */
+/*@keyframes close-wrapper {
+    to {
+        clip: rect(auto, auto, auto, auto);
+    }
+}*/
